@@ -6,6 +6,10 @@
 #include "lauxlib.h"
 #include "ao/ao.h"
 
+#if !defined(LUA_VERSION_NUM) || LUA_VERSION_NUM == 501
+#define luaL_len(L, i) lua_objlen((L), (i))
+#endif
+
 int my_round(double number)
 {
 	return (number >= 0) ? (int)(number + 0.5) : (int)(number - 0.5);
